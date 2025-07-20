@@ -42,7 +42,8 @@ export default function RootLayout({
                 <SignUp />
               </SignedOut>
               <SignedIn>
-                <UserButton/>
+                {/* <UserButton/> */}
+                {children}
               </SignedIn>
             </section>
         </body>
