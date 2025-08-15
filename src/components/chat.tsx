@@ -88,9 +88,12 @@ const ChatComponent: React.FC = () => {
             <div className="prose prose-sm max-w-none dark:prose-invert">
                 <ReactMarkdown
                     components={{
-                        code({ node, inline, className, children, ...props }) {
+                        code(props) {
+                            const { children, className, ...rest } = props;
                             const match = /language-(\w+)/.exec(className || '');
-                            return !inline && match ? (
+                            const isInline = !match;
+
+                            return !isInline && match ? (
                                 <SyntaxHighlighter
                                     style={oneDark}
                                     language={match[1]}
@@ -101,7 +104,7 @@ const ChatComponent: React.FC = () => {
                             ) : (
                                 <code
                                     className="bg-slate-100 dark:bg-slate-800 px-1 py-0.5 rounded text-sm"
-                                    {...props}
+                                    {...rest}
                                 >
                                     {children}
                                 </code>
@@ -181,8 +184,8 @@ const ChatComponent: React.FC = () => {
 
                                 <div className={`max-w-[70%] ${msg.role === 'user' ? 'order-2' : ''}`}>
                                     <Card className={`p-4 ${msg.role === 'user'
-                                            ? 'bg-blue-600 text-white border-blue-600'
-                                            : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700'
+                                        ? 'bg-blue-600 text-white border-blue-600'
+                                        : 'bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700'
                                         }`}>
                                         <div className="space-y-3">
                                             {msg.content && (
