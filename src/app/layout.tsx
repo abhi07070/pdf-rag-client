@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignUp,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from '@clerk/nextjs'
+// import {
+//   ClerkProvider,
+//   SignInButton,
+//   SignUp,
+//   SignUpButton,
+//   SignedIn,
+//   SignedOut,
+//   UserButton,
+// } from '@clerk/nextjs'
 import "./globals.css";
 
 const geistSans = Geist({
@@ -32,22 +32,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-          >
-            <section className="flex flex-col items-center justify-center min-h-screen">
-              <SignedOut>
-                <SignUp />
-              </SignedOut>
-              <SignedIn>
-                {/* <UserButton/> */}
-                {children}
-              </SignedIn>
-            </section>
-        </body>
-      </html>
-    </ClerkProvider>
+    // <ClerkProvider>
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        {/* <section className="flex flex-col items-center justify-center min-h-screen">
+            <SignedOut>
+              <SignInButton />
+              <SignUpButton>
+                <button className="bg-[#6c47ff] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
+                  Sign Up
+                </button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn> */}
+        {/* <UserButton/> */}
+        {children}
+        {/* </SignedIn>
+          </section> */}
+      </body>
+    </html>
+    // </ClerkProvider>
   );
 }
